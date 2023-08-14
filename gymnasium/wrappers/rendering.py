@@ -156,11 +156,11 @@ class RecordVideoV0(
 
     Usually, you only want to record episodes intermittently, say every hundredth episode.
     To do this, you can specify ``episode_trigger`` or ``step_trigger``.
-    They should be functions returning a boolean that indicates whether a recording should be started at the
-    current episode or step, respectively.
-    If neither :attr:`episode_trigger` nor ``step_trigger`` is passed, a default ``episode_trigger`` will be employed,
-    i.e. :func:`capped_cubic_video_schedule`. This function starts a video at every episode that is a power of 3 until 1000 and
-    then every 1000 episodes.
+    They should be functions that accept a single integer and returns a boolean indicating whether a recording should
+    be started at the current episode or step.
+    If neither :attr:`episode_trigger` nor ``step_trigger`` is passed, a default ``episode_trigger``
+    will be employed, i.e. :func:`capped_cubic_video_schedule`.
+    This records every episode that is a power of 3 until 1000 and then every 1000 episodes.
     By default, the recording will be stopped once reset is called. However, you can also create recordings of fixed
     length (possibly spanning several episodes) by passing a strictly positive value for ``video_length``.
 
@@ -174,6 +174,7 @@ class RecordVideoV0(
         >>> for i in range(50):
         ...     termination, truncation = False, False
         ...     _ = env.reset(seed=123)
+        ...     _ = env.action_space.seed(123)
         ...     while not (termination or truncation):
         ...         obs, rew, termination, truncation, info = env.step(env.action_space.sample())
         ...
@@ -187,30 +188,33 @@ class RecordVideoV0(
         >>> env = gym.make("LunarLander-v2", render_mode="rgb_array")
         >>> trigger = lambda t: t == 10
         >>> env = RecordVideoV0(env, video_folder="./save_videos2", step_trigger=trigger, disable_logger=True)
-        >>> for i in range(3):
+        >>> for i in range(10):
         ...     termination, truncation = False, False
         ...     _ = env.reset(seed=123)
+        ...     _ = env.action_space.seed(123)
         ...     while not (termination or truncation):
         ...         obs, rew, termination, truncation, info = env.step(env.action_space.sample())
         ...
         >>> env.close()
         >>> len(os.listdir("./save_videos2"))
-        1
+        10
 
-        Run 3 episodes, record everything, but in chunks of 1000 frames:
+        Run 10 episodes, record everything, but in chunks of 1000 frames:
         >>> import os
         >>> import gymnasium as gym
         >>> env = gym.make("LunarLander-v2", render_mode="rgb_array")
-        >>> env = RecordVideoV0(env, video_folder="./save_videos3", video_length=1000, disable_logger=True)
+        >>> always = lambda _: True
+        >>> env = RecordVideoV0(env, video_folder="./save_videos3", episode_trigger=always, step_trigger=always, video_length=1000, disable_logger=True)
         >>> for i in range(3):
         ...     termination, truncation = False, False
         ...     _ = env.reset(seed=123)
+        ...     _ = env.action_space.seed(123)
         ...     while not (termination or truncation):
         ...         obs, rew, termination, truncation, info = env.step(env.action_space.sample())
         ...
         >>> env.close()
         >>> len(os.listdir("./save_videos3"))
-        2
+        3
 
     """
 
@@ -259,10 +263,20 @@ class RecordVideoV0(
         if episode_trigger is None and step_trigger is None:
             from gymnasium.utils.save_video import capped_cubic_video_schedule
 
-            episode_trigger = capped_cubic_video_schedule
+            self.episode_trigger = capped_cubic_video_schedule
+            self.step_trigger = lambda _: True
+        elif episode_trigger is not None and step_trigger is None:
+            self.episode_trigger = episode_trigger
+            self.step_trigger = lambda _: True
+        elif episode_trigger is None and step_trigger is not None:
+            self.episode_trigger = lambda _: True
+            self.step_trigger = step_trigger
+        else:
+            self.episode_trigger = episode_trigger
+            self.step_trigger = step_trigger
 
-        self.episode_trigger = episode_trigger
-        self.step_trigger = step_trigger
+        self.episode_trigger: Callable
+        self.step_trigger: Callable
         self.disable_logger = disable_logger
 
         self.video_folder = os.path.abspath(video_folder)
@@ -283,7 +297,7 @@ class RecordVideoV0(
         self.recorded_frames: list[RenderFrame] = []
         self.render_history: list[RenderFrame] = []
 
-        self.step_id = -1
+        self.step_id = 0
         self.episode_id = -1
 
         try:
@@ -317,17 +331,23 @@ class RecordVideoV0(
     ) -> tuple[ObsType, dict[str, Any]]:
         """Reset the environment and eventually starts a new recording."""
         obs, info = super().reset(seed=seed, options=options)
+
+        # handle the step and episode ids
+        self.step_id = 0
         self.episode_id += 1
 
-        if self.recording and self.video_length == float("inf"):
-            self.stop_recording()
-
-        if self.episode_trigger and self.episode_trigger(self.episode_id):
-            self.start_recording(f"{self.name_prefix}-episode-{self.episode_id}")
+        # if we're already recording, check if we need to stop the recording
         if self.recording:
-            self._capture_frame()
-            if len(self.recorded_frames) > self.video_length:
+            if self.video_length == float("inf"):
                 self.stop_recording()
+            if len(self.recorded_frames) >= self.video_length:
+                self.stop_recording()
+
+        # check if we need to record
+        else:
+            if self.episode_trigger(self.episode_id) and self.step_trigger(0):
+                self.start_recording(f"{self.name_prefix}-ep-{self.episode_id}-step-0")
+                self._capture_frame()
 
         return obs, info
 
@@ -338,21 +358,27 @@ class RecordVideoV0(
         obs, rew, terminated, truncated, info = self.env.step(action)
         self.step_id += 1
 
-        if self.step_trigger and self.step_trigger(self.step_id):
-            self.start_recording(f"{self.name_prefix}-step-{self.step_id}")
+        # if we're already recording, check if we need to stop the recording
         if self.recording:
             self._capture_frame()
 
-            if len(self.recorded_frames) > self.video_length:
+            if len(self.recorded_frames) >= self.video_length:
                 self.stop_recording()
+
+        # check if we need to record
+        else:
+            if self.episode_trigger(self.episode_id) and self.step_trigger(
+                self.step_id
+            ):
+                self.start_recording(
+                    f"{self.name_prefix}-ep-{self.episode_id}-step-{self.step_id}"
+                )
+                self._capture_frame()
 
         return obs, rew, terminated, truncated, info
 
     def start_recording(self, video_name: str):
         """Start a new recording. If it is already recording, stops the current recording before starting the new one."""
-        if self.recording:
-            self.stop_recording()
-
         self.recording = True
         self._video_name = video_name
 
@@ -372,7 +398,10 @@ class RecordVideoV0(
 
             clip = ImageSequenceClip(self.recorded_frames, fps=self.frames_per_sec)
             moviepy_logger = None if self.disable_logger else "bar"
-            path = os.path.join(self.video_folder, f"{self._video_name}.mp4")
+            path = os.path.join(
+                self.video_folder,
+                f"{self._video_name}-len-{len(self.recorded_frames)}.mp4",
+            )
             clip.write_videofile(path, logger=moviepy_logger)
 
         self.recorded_frames = []
