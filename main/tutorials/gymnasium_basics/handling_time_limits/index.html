@@ -8,10 +8,10 @@
     <meta property="og:type" content="website" />
     <meta property="og:description" content="A standard API for reinforcement learning and a diverse set of reference environments (formerly Gym)" />
     <meta property="og:url" content="https://gymnasium.farama.org/tutorials/gymnasium_basics/handling_time_limits.html" /><meta property="og:image" content="https://gymnasium.farama.org/_static/img/gymnasium-github.png" /><meta name="twitter:card" content="summary_large_image"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../../genindex/" /><link rel="search" title="Search" href="../../../search/" /><link rel="next" title="Implementing Custom Wrappers" href="../implementing_custom_wrappers/" /><link rel="prev" title="Gymnasium Basics" href="../" />
+<link rel="index" title="Index" href="../../../genindex/" /><link rel="search" title="Search" href="../../../search/" /><link rel="next" title="Implementing Custom Wrappers" href="../implementing_custom_wrappers/" /><link rel="prev" title="Load custom quadruped robot environments" href="../load_quadruped_model/" />
         <link rel="canonical" href="https://gymnasium.farama.org/tutorials/gymnasium_basics/handling_time_limits.html" />
 
-    <link rel="shortcut icon" href="../../../_static/favicon.png"/><!-- Generated with Sphinx 7.2.6 and Furo 2023.08.19.dev1 -->
+    <link rel="shortcut icon" href="../../../_static/favicon.png"/><!-- Generated with Sphinx 7.3.7 and Furo 2023.08.19.dev1 -->
         <title>Handling Time Limits - Gymnasium Documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=3e7f4c72" />
@@ -217,8 +217,12 @@
   <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/basic_usage/">Basic Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/train_agent/">Training an Agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/create_custom_env/">Create a Custom Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/record_agent/">Recording Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/speed_up_env/">Speeding Up Training</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/gym_compatibility/">Compatibility with Gym</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../introduction/migration-guide/">v0.21 to v0.26 Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/migration_guide/">Migration Guide - v0.21 to v1.0.0</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
@@ -228,7 +232,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../api/spaces/fundamental/">Fundamental Spaces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/spaces/composite/">Composite Spaces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/spaces/utils/">Spaces Utils</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../api/vector/utils/">Utility functions</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../api/wrappers/">Wrappers</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Wrappers</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -237,11 +240,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../api/wrappers/action_wrappers/">Action Wrappers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/wrappers/observation_wrappers/">Observation Wrappers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/wrappers/reward_wrappers/">Reward Wrappers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../api/wrappers/vector_wrappers/">Vector wrappers</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../api/vector/">Vector environments</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Vector environments</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../api/vector/wrappers/">Vector Wrappers</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../api/vector/">Vectorize</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Vectorize</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/vector/wrappers/">Wrappers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/vector/async_vector_env/">AsyncVectorEnv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/vector/sync_vector_env/">SyncVectorEnv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/vector/utils/">Utility functions</a></li>
@@ -394,11 +396,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../environments/atari/zaxxon/">Zaxxon</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../environments/third_party_environments/">Third-Party Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../environments/third_party_environments/">External Environments</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul class="current">
 <li class="toctree-l1 current has-children"><a class="reference internal" href="../">Gymnasium Basics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Gymnasium Basics</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../load_quadruped_model/">Load custom quadruped robot environments</a></li>
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Handling Time Limits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../implementing_custom_wrappers/">Implementing Custom Wrappers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../environment_creation/">Make your own custom environment</a></li>
@@ -411,6 +414,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../training_agents/FrozenLake_tuto/">Frozenlake benchmark</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../third-party-tutorials/">Third-Party Tutorials</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.comet.com/docs/v2/integrations/ml-frameworks/gymnasium/?utm_source=gymnasium&amp;utm_medium=partner&amp;utm_campaign=partner_gymnasium_2023&amp;utm_content=docs_gymnasium">Comet Tutorial</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
@@ -477,10 +481,10 @@
           <article role="main">
             
             <section class="sphx-glr-example-title" id="handling-time-limits">
-<span id="sphx-glr-tutorials-gymnasium-basics-handling-time-limits-py"></span><h1>Handling Time Limits<a class="headerlink" href="#handling-time-limits" title="Link to this heading">#</a></h1>
+<span id="sphx-glr-tutorials-gymnasium-basics-handling-time-limits-py"></span><h1>Handling Time Limits<a class="headerlink" href="#handling-time-limits" title="Link to this heading">¶</a></h1>
 <p>In using Gymnasium environments with reinforcement learning code, a common problem observed is how time limits are incorrectly handled. The <code class="docutils literal notranslate"><span class="pre">done</span></code> signal received (in previous versions of OpenAI Gym &lt; 0.26) from <code class="docutils literal notranslate"><span class="pre">env.step</span></code> indicated whether an episode has ended. However, this signal did not distinguish whether the episode ended due to <code class="docutils literal notranslate"><span class="pre">termination</span></code> or <code class="docutils literal notranslate"><span class="pre">truncation</span></code>.</p>
 <section id="termination">
-<h2>Termination<a class="headerlink" href="#termination" title="Link to this heading">#</a></h2>
+<h2>Termination<a class="headerlink" href="#termination" title="Link to this heading">¶</a></h2>
 <p>Termination refers to the episode ending after reaching a terminal state that is defined as part of the environment
 definition. Examples are - task success, task failure, robot falling down etc. Notably, this also includes episodes
 ending in finite-horizon environments due to a time-limit inherent to the environment. Note that to preserve Markov
@@ -488,7 +492,7 @@ property, a representation of the remaining time must be present in the agent’
 <a class="reference external" href="https://arxiv.org/abs/1712.00378">(Reference)</a></p>
 </section>
 <section id="truncation">
-<h2>Truncation<a class="headerlink" href="#truncation" title="Link to this heading">#</a></h2>
+<h2>Truncation<a class="headerlink" href="#truncation" title="Link to this heading">¶</a></h2>
 <p>Truncation refers to the episode ending after an externally defined condition (that is outside the scope of the Markov
 Decision Process). This could be a time-limit, a robot going out of bounds etc.</p>
 <p>An infinite-horizon environment is an obvious example of where this is needed. We cannot wait forever for the episode
@@ -498,7 +502,7 @@ Decision Process that defines the RL problem. This is also different from time-l
 as the agent in this case has no idea about this time-limit.</p>
 </section>
 <section id="importance-in-learning-code">
-<h2>Importance in learning code<a class="headerlink" href="#importance-in-learning-code" title="Link to this heading">#</a></h2>
+<h2>Importance in learning code<a class="headerlink" href="#importance-in-learning-code" title="Link to this heading">¶</a></h2>
 <p>Bootstrapping (using one or more estimated values of a variable to update estimates of the same variable) is a key
 aspect of Reinforcement Learning. A value function will tell you how much discounted reward you will get from a
 particular state if you follow a given policy. When an episode stops at any given point, by looking at the value of
@@ -528,7 +532,7 @@ bootstrap or not. However, this is incorrect since it does not differentiate bet
 <p>This is incorrect in the case of episode ending due to a truncation, where bootstrapping needs to happen but it doesn’t.</p>
 </section>
 <section id="solution">
-<h2>Solution<a class="headerlink" href="#solution" title="Link to this heading">#</a></h2>
+<h2>Solution<a class="headerlink" href="#solution" title="Link to this heading">¶</a></h2>
 <p>From v0.26 onwards, Gymnasium’s <code class="docutils literal notranslate"><span class="pre">env.step</span></code> API returns both termination and truncation information explicitly.
 In the previous version truncation information was supplied through the info key <code class="docutils literal notranslate"><span class="pre">TimeLimit.truncated</span></code>.
 The correct way to handle terminations and truncations now is,</p>
@@ -565,7 +569,7 @@ The correct way to handle terminations and truncations now is,</p>
                 <use href="#svg-arrow-right"></use>
               </svg>
             </a>
-            <a class="prev-page" href="../">
+            <a class="prev-page" href="../load_quadruped_model/">
               <svg class="furo-related-icon">
                 <use href="#svg-arrow-right"></use>
               </svg>
@@ -574,7 +578,7 @@ The correct way to handle terminations and truncations now is,</p>
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Gymnasium Basics</div>
+                <div class="title">Load custom quadruped robot environments</div>
                 
               </div>
             </a>
@@ -709,11 +713,12 @@ The correct way to handle terminations and truncations now is,</p>
         })()
       </script>
 
-    <script src="../../../_static/documentation_options.js?v=a4d19d35"></script>
-    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/documentation_options.js?v=31d51385"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/furo.js?v=7660844c"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script>
 

@@ -11,7 +11,7 @@
 <link rel="index" title="Index" href="../../../genindex/" /><link rel="search" title="Search" href="../../../search/" /><link rel="next" title="Training A2C with Vector Envs and Domain Randomization" href="../vector_envs_tutorial/" /><link rel="prev" title="Implementing Custom Wrappers" href="../implementing_custom_wrappers/" />
         <link rel="canonical" href="https://gymnasium.farama.org/tutorials/gymnasium_basics/environment_creation.html" />
 
-    <link rel="shortcut icon" href="../../../_static/favicon.png"/><!-- Generated with Sphinx 7.2.6 and Furo 2023.08.19.dev1 -->
+    <link rel="shortcut icon" href="../../../_static/favicon.png"/><!-- Generated with Sphinx 7.3.7 and Furo 2023.08.19.dev1 -->
         <title>Make your own custom environment - Gymnasium Documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=3e7f4c72" />
@@ -217,8 +217,12 @@
   <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/basic_usage/">Basic Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/train_agent/">Training an Agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/create_custom_env/">Create a Custom Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/record_agent/">Recording Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/speed_up_env/">Speeding Up Training</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/gym_compatibility/">Compatibility with Gym</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../introduction/migration-guide/">v0.21 to v0.26 Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/migration_guide/">Migration Guide - v0.21 to v1.0.0</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
@@ -228,7 +232,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../api/spaces/fundamental/">Fundamental Spaces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/spaces/composite/">Composite Spaces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/spaces/utils/">Spaces Utils</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../api/vector/utils/">Utility functions</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../api/wrappers/">Wrappers</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Wrappers</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -237,11 +240,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../api/wrappers/action_wrappers/">Action Wrappers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/wrappers/observation_wrappers/">Observation Wrappers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/wrappers/reward_wrappers/">Reward Wrappers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../api/wrappers/vector_wrappers/">Vector wrappers</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../api/vector/">Vector environments</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Vector environments</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../api/vector/wrappers/">Vector Wrappers</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../api/vector/">Vectorize</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Vectorize</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/vector/wrappers/">Wrappers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/vector/async_vector_env/">AsyncVectorEnv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/vector/sync_vector_env/">SyncVectorEnv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/vector/utils/">Utility functions</a></li>
@@ -394,11 +396,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../environments/atari/zaxxon/">Zaxxon</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../environments/third_party_environments/">Third-Party Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../environments/third_party_environments/">External Environments</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul class="current">
 <li class="toctree-l1 current has-children"><a class="reference internal" href="../">Gymnasium Basics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Gymnasium Basics</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../load_quadruped_model/">Load custom quadruped robot environments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../handling_time_limits/">Handling Time Limits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../implementing_custom_wrappers/">Implementing Custom Wrappers</a></li>
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Make your own custom environment</a></li>
@@ -411,6 +414,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../training_agents/FrozenLake_tuto/">Frozenlake benchmark</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../third-party-tutorials/">Third-Party Tutorials</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.comet.com/docs/v2/integrations/ml-frameworks/gymnasium/?utm_source=gymnasium&amp;utm_medium=partner&amp;utm_campaign=partner_gymnasium_2023&amp;utm_content=docs_gymnasium">Comet Tutorial</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
@@ -477,14 +481,14 @@
           <article role="main">
             
             <section class="sphx-glr-example-title" id="make-your-own-custom-environment">
-<span id="sphx-glr-tutorials-gymnasium-basics-environment-creation-py"></span><h1>Make your own custom environment<a class="headerlink" href="#make-your-own-custom-environment" title="Link to this heading">#</a></h1>
+<span id="sphx-glr-tutorials-gymnasium-basics-environment-creation-py"></span><h1>Make your own custom environment<a class="headerlink" href="#make-your-own-custom-environment" title="Link to this heading">¶</a></h1>
 <p>This documentation overviews creating new environments and relevant
 useful wrappers, utilities and tests included in Gymnasium designed for
 the creation of new environments.</p>
 <section id="setup">
-<h2>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h2>
+<h2>Setup<a class="headerlink" href="#setup" title="Link to this heading">¶</a></h2>
 <section id="recommended-solution">
-<h3>Recommended solution<a class="headerlink" href="#recommended-solution" title="Link to this heading">#</a></h3>
+<h3>Recommended solution<a class="headerlink" href="#recommended-solution" title="Link to this heading">¶</a></h3>
 <ol class="arabic simple">
 <li><p>Install <code class="docutils literal notranslate"><span class="pre">pipx</span></code> following the <a class="reference external" href="https://pypa.github.io/pipx/installation/">pipx documentation</a>.</p></li>
 <li><p>Then install Copier:</p></li>
@@ -494,7 +498,7 @@ the creation of new environments.</p>
 </div>
 </section>
 <section id="alternative-solutions">
-<h3>Alternative solutions<a class="headerlink" href="#alternative-solutions" title="Link to this heading">#</a></h3>
+<h3>Alternative solutions<a class="headerlink" href="#alternative-solutions" title="Link to this heading">¶</a></h3>
 <p>Install Copier with Pip or Conda:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install copier</span>
 </pre></div>
@@ -506,7 +510,7 @@ the creation of new environments.</p>
 </section>
 </section>
 <section id="generate-your-environment">
-<h2>Generate your environment<a class="headerlink" href="#generate-your-environment" title="Link to this heading">#</a></h2>
+<h2>Generate your environment<a class="headerlink" href="#generate-your-environment" title="Link to this heading">¶</a></h2>
 <p>You can check that <code class="docutils literal notranslate"><span class="pre">Copier</span></code> has been correctly installed by running the following command, which should output a version number:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">copier --version</span>
 </pre></div>
@@ -535,7 +539,7 @@ the creation of new environments.</p>
 </div>
 </section>
 <section id="subclassing-gymnasium-env">
-<h2>Subclassing gymnasium.Env<a class="headerlink" href="#subclassing-gymnasium-env" title="Link to this heading">#</a></h2>
+<h2>Subclassing gymnasium.Env<a class="headerlink" href="#subclassing-gymnasium-env" title="Link to this heading">¶</a></h2>
 <p>Before learning how to create your own environment you should check out
 <a class="reference external" href="/api/env">the documentation of Gymnasium’s API</a>.</p>
 <p>To illustrate the process of subclassing <code class="docutils literal notranslate"><span class="pre">gymnasium.Env</span></code>, we will
@@ -557,15 +561,19 @@ grid cell where the target is located.</p></li>
 always zero, unless the agent has reached the target, then it is 1.</p></li>
 </ul>
 <p>An episode in this environment (with <code class="docutils literal notranslate"><span class="pre">size=5</span></code>) might look like this:</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../_images/environment-creation-example-episode.gif"><img alt="Example episode of the custom environment" src="../../../_images/environment-creation-example-episode.gif" style="width: 400px;" />
+</a>
+</div></blockquote>
 <p>where the blue dot is the agent and the red square represents the
 target.</p>
 <p>Let us look at the source code of <code class="docutils literal notranslate"><span class="pre">GridWorldEnv</span></code> piece by piece:</p>
 <section id="declaration-and-initialization">
-<h3>Declaration and Initialization<a class="headerlink" href="#declaration-and-initialization" title="Link to this heading">#</a></h3>
+<h3>Declaration and Initialization<a class="headerlink" href="#declaration-and-initialization" title="Link to this heading">¶</a></h3>
 <p>Our custom environment will inherit from the abstract class
 <code class="docutils literal notranslate"><span class="pre">gymnasium.Env</span></code>. You shouldn’t forget to add the <code class="docutils literal notranslate"><span class="pre">metadata</span></code>
 attribute to your class. There, you should specify the render-modes that
-are supported by your environment (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;human&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;rgb_array&quot;</span></code>,
+are supported by your environment (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;human&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;rgb_array&quot;</span></code>,
 <code class="docutils literal notranslate"><span class="pre">&quot;ansi&quot;</span></code>) and the framerate at which your environment should be
 rendered. Every environment should support <code class="docutils literal notranslate"><span class="pre">None</span></code> as render-mode; you
 don’t need to add it in the metadata. In <code class="docutils literal notranslate"><span class="pre">GridWorldEnv</span></code>, we will
@@ -592,10 +600,10 @@ declaration of <code class="docutils literal notranslate"><span class="pre">Grid
 
 
 <span class="k">class</span> <span class="nc">Actions</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">up</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="n">left</span> <span class="o">=</span> <span class="mi">2</span>
-    <span class="n">down</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">RIGHT</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">UP</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">LEFT</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">DOWN</span> <span class="o">=</span> <span class="mi">3</span>
 
 
 <span class="k">class</span> <span class="nc">GridWorldEnv</span><span class="p">(</span><span class="n">gym</span><span class="o">.</span><span class="n">Env</span><span class="p">):</span>
@@ -613,6 +621,8 @@ declaration of <code class="docutils literal notranslate"><span class="pre">Grid
                 <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="n">spaces</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">),</span>
             <span class="p">}</span>
         <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_agent_location</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_target_location</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
 
         <span class="c1"># We have 4 actions, corresponding to &quot;right&quot;, &quot;up&quot;, &quot;left&quot;, &quot;down&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">action_space</span> <span class="o">=</span> <span class="n">spaces</span><span class="o">.</span><span class="n">Discrete</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
@@ -623,10 +633,10 @@ declaration of <code class="docutils literal notranslate"><span class="pre">Grid
 <span class="sd">        i.e. 0 corresponds to &quot;right&quot;, 1 to &quot;up&quot; etc.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_action_to_direction</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="n">Actions</span><span class="o">.</span><span class="n">right</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
-            <span class="n">Actions</span><span class="o">.</span><span class="n">up</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
-            <span class="n">Actions</span><span class="o">.</span><span class="n">left</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
-            <span class="n">Actions</span><span class="o">.</span><span class="n">down</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+            <span class="n">Actions</span><span class="o">.</span><span class="n">RIGHT</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
+            <span class="n">Actions</span><span class="o">.</span><span class="n">UP</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+            <span class="n">Actions</span><span class="o">.</span><span class="n">LEFT</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
+            <span class="n">Actions</span><span class="o">.</span><span class="n">DOWN</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
         <span class="p">}</span>
 
         <span class="k">assert</span> <span class="n">render_mode</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">render_mode</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;render_modes&quot;</span><span class="p">]</span>
@@ -645,7 +655,7 @@ declaration of <code class="docutils literal notranslate"><span class="pre">Grid
 </div>
 </section>
 <section id="constructing-observations-from-environment-states">
-<h3>Constructing Observations From Environment States<a class="headerlink" href="#constructing-observations-from-environment-states" title="Link to this heading">#</a></h3>
+<h3>Constructing Observations From Environment States<a class="headerlink" href="#constructing-observations-from-environment-states" title="Link to this heading">¶</a></h3>
 <p>Since we will need to compute observations both in <code class="docutils literal notranslate"><span class="pre">reset</span></code> and
 <code class="docutils literal notranslate"><span class="pre">step</span></code>, it is often convenient to have a (private) method <code class="docutils literal notranslate"><span class="pre">_get_obs</span></code>
 that translates the environment’s state into an observation. However,
@@ -667,12 +677,12 @@ to provide the manhattan distance between the agent and the target:</p>
 </pre></div>
 </div>
 <p>Oftentimes, info will also contain some data that is only available
-inside the <code class="docutils literal notranslate"><span class="pre">step</span></code> method (e.g. individual reward terms). In that case,
+inside the <code class="docutils literal notranslate"><span class="pre">step</span></code> method (e.g., individual reward terms). In that case,
 we would have to update the dictionary that is returned by <code class="docutils literal notranslate"><span class="pre">_get_info</span></code>
 in <code class="docutils literal notranslate"><span class="pre">step</span></code>.</p>
 </section>
 <section id="reset">
-<h3>Reset<a class="headerlink" href="#reset" title="Link to this heading">#</a></h3>
+<h3>Reset<a class="headerlink" href="#reset" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">reset</span></code> method will be called to initiate a new episode. You may
 assume that the <code class="docutils literal notranslate"><span class="pre">step</span></code> method will not be called before <code class="docutils literal notranslate"><span class="pre">reset</span></code> has
 been called. Moreover, <code class="docutils literal notranslate"><span class="pre">reset</span></code> should be called whenever a done signal
@@ -715,7 +725,7 @@ and some auxiliary information. We can use the methods <code class="docutils lit
 </div>
 </section>
 <section id="step">
-<h3>Step<a class="headerlink" href="#step" title="Link to this heading">#</a></h3>
+<h3>Step<a class="headerlink" href="#step" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">step</span></code> method usually contains most of the logic of your
 environment. It accepts an <code class="docutils literal notranslate"><span class="pre">action</span></code>, computes the state of the
 environment after applying that action and returns the 5-tuple
@@ -747,7 +757,7 @@ use of <code class="docutils literal notranslate"><span class="pre">_get_obs</sp
 </div>
 </section>
 <section id="rendering">
-<h3>Rendering<a class="headerlink" href="#rendering" title="Link to this heading">#</a></h3>
+<h3>Rendering<a class="headerlink" href="#rendering" title="Link to this heading">¶</a></h3>
 <p>Here, we are using PyGame for rendering. A similar approach to rendering
 is used in many environments that are included with Gymnasium and you
 can use it as a skeleton for your own environments:</p>
@@ -822,7 +832,7 @@ can use it as a skeleton for your own environments:</p>
 </div>
 </section>
 <section id="close">
-<h3>Close<a class="headerlink" href="#close" title="Link to this heading">#</a></h3>
+<h3>Close<a class="headerlink" href="#close" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">close</span></code> method should close any open resources that were used by
 the environment. In many cases, you don’t actually have to bother to
 implement this method. However, in our example <code class="docutils literal notranslate"><span class="pre">render_mode</span></code> may be
@@ -839,7 +849,7 @@ after having called <code class="docutils literal notranslate"><span class="pre"
 </section>
 </section>
 <section id="registering-envs">
-<h2>Registering Envs<a class="headerlink" href="#registering-envs" title="Link to this heading">#</a></h2>
+<h2>Registering Envs<a class="headerlink" href="#registering-envs" title="Link to this heading">¶</a></h2>
 <p>In order for the custom environments to be detected by Gymnasium, they
 must be registered as follows. We will choose to put this code in
 <code class="docutils literal notranslate"><span class="pre">gymnasium_env/__init__.py</span></code>.</p>
@@ -896,12 +906,7 @@ additional keyword arguments to <code class="docutils literal notranslate"><span
 <td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
 <td><p>Whether to wrap the environment in an  <code class="docutils literal notranslate"><span class="pre">OrderEnforcing</span></code> wrapper</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">autoreset</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
-<td><p>Whether to wrap the environment in an <code class="docutils literal notranslate"><span class="pre">AutoResetWrapper</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">kwargs</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">kwargs</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">dict</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">{}</span></code></p></td>
 <td><p>The default kwargs to pass to the environment class</p></td>
@@ -925,34 +930,34 @@ this - <code class="docutils literal notranslate"><span class="pre">env</span> <
 contains the registration code. For the GridWorld env, the registration
 code is run by importing <code class="docutils literal notranslate"><span class="pre">gymnasium_env</span></code> so if it were not possible to
 import gymnasium_env explicitly, you could register while making by
-<code class="docutils literal notranslate"><span class="pre">env</span> <span class="pre">=</span> <span class="pre">gymnasium.make('gymnasium_env:gymnasium_env/GridWorld-v0)</span></code>. This
+<code class="docutils literal notranslate"><span class="pre">env</span> <span class="pre">=</span> <span class="pre">gymnasium.make('gymnasium_env:gymnasium_env/GridWorld-v0')</span></code>. This
 is especially useful when you’re allowed to pass only the environment ID
 into a third-party codebase (eg. learning library). This lets you
 register your environment without needing to edit the library’s source
 code.</p>
 </section>
 <section id="creating-a-package">
-<h2>Creating a Package<a class="headerlink" href="#creating-a-package" title="Link to this heading">#</a></h2>
+<h2>Creating a Package<a class="headerlink" href="#creating-a-package" title="Link to this heading">¶</a></h2>
 <p>The last step is to structure our code as a Python package. This
 involves configuring <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>. A minimal example of how
 to do so is as follows:</p>
 <div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[build-system]</span>
-<span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;hatchling&quot;</span><span class="p">]</span>
-<span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;hatchling.build&quot;</span>
+<span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;hatchling&quot;</span><span class="p">]</span>
+<span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hatchling.build&quot;</span>
 
 <span class="k">[project]</span>
-<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gymnasium_env&quot;</span>
-<span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;0.0.1&quot;</span>
+<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;gymnasium_env&quot;</span>
+<span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.0.1&quot;</span>
 <span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<span class="w">  </span><span class="s">&quot;gymnasium&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s">&quot;pygame==2.1.3&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="s">&quot;pre-commit&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;gymnasium&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;pygame==2.1.3&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;pre-commit&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 </pre></div>
 </div>
 </section>
 <section id="creating-environment-instances">
-<h2>Creating Environment Instances<a class="headerlink" href="#creating-environment-instances" title="Link to this heading">#</a></h2>
+<h2>Creating Environment Instances<a class="headerlink" href="#creating-environment-instances" title="Link to this heading">¶</a></h2>
 <p>Now you can install your package locally with:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install -e .</span>
 </pre></div>
@@ -977,7 +982,7 @@ pythonic and environments that are instantiated like this are also
 perfectly fine (but remember to add wrappers as well!).</p>
 </section>
 <section id="using-wrappers">
-<h2>Using Wrappers<a class="headerlink" href="#using-wrappers" title="Link to this heading">#</a></h2>
+<h2>Using Wrappers<a class="headerlink" href="#using-wrappers" title="Link to this heading">¶</a></h2>
 <p>Oftentimes, we want to use different variants of a custom environment,
 or we want to modify the behavior of an environment that is provided by
 Gymnasium or some other party. Wrappers allow us to do this without
@@ -1200,8 +1205,8 @@ in <code class="docutils literal notranslate"><span class="pre">gymnasium_env/wr
         })()
       </script>
 
-    <script src="../../../_static/documentation_options.js?v=a4d19d35"></script>
-    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/documentation_options.js?v=31d51385"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/furo.js?v=7660844c"></script>
     

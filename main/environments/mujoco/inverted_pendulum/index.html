@@ -11,7 +11,7 @@
 <link rel="index" title="Index" href="../../../genindex/" /><link rel="search" title="Search" href="../../../search/" /><link rel="next" title="Pusher" href="../pusher/" /><link rel="prev" title="Inverted Double Pendulum" href="../inverted_double_pendulum/" />
         <link rel="canonical" href="https://gymnasium.farama.org/environments/mujoco/inverted_pendulum.html" />
 
-    <link rel="shortcut icon" href="../../../_static/favicon.png"/><!-- Generated with Sphinx 7.2.6 and Furo 2023.08.19.dev1 -->
+    <link rel="shortcut icon" href="../../../_static/favicon.png"/><!-- Generated with Sphinx 7.3.7 and Furo 2023.08.19.dev1 -->
         <title>Inverted Pendulum - Gymnasium Documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=3e7f4c72" />
@@ -217,8 +217,12 @@
   <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/basic_usage/">Basic Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/train_agent/">Training an Agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/create_custom_env/">Create a Custom Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/record_agent/">Recording Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/speed_up_env/">Speeding Up Training</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/gym_compatibility/">Compatibility with Gym</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../introduction/migration-guide/">v0.21 to v0.26 Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/migration_guide/">Migration Guide - v0.21 to v1.0.0</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul>
@@ -228,7 +232,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../api/spaces/fundamental/">Fundamental Spaces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/spaces/composite/">Composite Spaces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/spaces/utils/">Spaces Utils</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../api/vector/utils/">Utility functions</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../api/wrappers/">Wrappers</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Wrappers</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -237,11 +240,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../api/wrappers/action_wrappers/">Action Wrappers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/wrappers/observation_wrappers/">Observation Wrappers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/wrappers/reward_wrappers/">Reward Wrappers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../api/wrappers/vector_wrappers/">Vector wrappers</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../api/vector/">Vector environments</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Vector environments</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../api/vector/wrappers/">Vector Wrappers</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../api/vector/">Vectorize</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Vectorize</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/vector/wrappers/">Wrappers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/vector/async_vector_env/">AsyncVectorEnv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/vector/sync_vector_env/">SyncVectorEnv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/vector/utils/">Utility functions</a></li>
@@ -394,11 +396,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../../atari/zaxxon/">Zaxxon</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../third_party_environments/">Third-Party Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../third_party_environments/">External Environments</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../tutorials/gymnasium_basics/">Gymnasium Basics</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Gymnasium Basics</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/gymnasium_basics/load_quadruped_model/">Load custom quadruped robot environments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/gymnasium_basics/handling_time_limits/">Handling Time Limits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/gymnasium_basics/implementing_custom_wrappers/">Implementing Custom Wrappers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/gymnasium_basics/environment_creation/">Make your own custom environment</a></li>
@@ -411,6 +414,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/training_agents/FrozenLake_tuto/">Frozenlake benchmark</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/third-party-tutorials/">Third-Party Tutorials</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.comet.com/docs/v2/integrations/ml-frameworks/gymnasium/?utm_source=gymnasium&amp;utm_medium=partner&amp;utm_campaign=partner_gymnasium_2023&amp;utm_content=docs_gymnasium">Comet Tutorial</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
@@ -466,10 +470,11 @@
           </div>
           <article role="main">
             
-            <section id="inverted-pendulum">
-<h1>Inverted Pendulum<a class="headerlink" href="#inverted-pendulum" title="Link to this heading">#</a></h1>
+            <section class="tex2jax_ignore mathjax_ignore" id="inverted-pendulum">
+<h1>Inverted Pendulum<a class="headerlink" href="#inverted-pendulum" title="Link to this heading">¶</a></h1>
 <figure class="align-default" id="id1">
-<a class="reference internal image-reference" href="../../../_images/inverted_pendulum.gif"><img alt="../../../_images/inverted_pendulum.gif" src="../../../_images/inverted_pendulum.gif" style="width: 200px;" /></a>
+<a class="reference internal image-reference" href="../../../_images/inverted_pendulum.gif"><img alt="../../../_images/inverted_pendulum.gif" src="../../../_images/inverted_pendulum.gif" style="width: 200px;" />
+</a>
 </figure>
 <p>This environment is part of the Mujoco environments which contains general information about the environment.</p>
 <div class="table-wrapper colwidths-auto docutils container">
@@ -493,44 +498,14 @@
 </table>
 </div>
 <section id="description">
-<h2>Description<a class="headerlink" href="#description" title="Link to this heading">#</a></h2>
-<p>This environment is the cartpole environment based on the work done by
-Barto, Sutton, and Anderson in <a class="reference external" href="https://ieeexplore.ieee.org/document/6313077">“Neuronlike adaptive elements that can
-solve difficult learning control problems”</a>,
-just like in the classic environments but now powered by the Mujoco physics simulator -
-allowing for more complex experiments (such as varying the effects of gravity).
-This environment involves a cart that can moved linearly, with a pole fixed on it
-at one end and having another end free. The cart can be pushed left or right, and the
-goal is to balance the pole on the top of the cart by applying forces on the cart.</p>
-<p>Gymnasium includes the following versions of the environment:</p>
-<div class="table-wrapper colwidths-auto docutils container">
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Environment</p></th>
-<th class="head"><p>Binding</p></th>
-<th class="head"><p>Notes</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>InvertedPendulum-v5</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">mujoco=&gt;2.3.3</span></code></p></td>
-<td><p>Recommended (most features, the least bugs)</p></td>
-</tr>
-<tr class="row-odd"><td><p>InvertedPendulum-v4</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">mujoco=&gt;2.1.3</span></code></p></td>
-<td><p>Maintained for reproducibility</p></td>
-</tr>
-<tr class="row-even"><td><p>InvertedPendulum-v2</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">mujoco-py</span></code></p></td>
-<td><p>Maintained for reproducibility</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>For more information see section “Version History”.</p>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
+<p>This environment is the Cartpole environment, based on the work of Barto, Sutton, and Anderson in <a class="reference external" href="https://ieeexplore.ieee.org/document/6313077">“Neuronlike adaptive elements that can solve difficult learning control problems”</a>,
+just like in the classic environments, but now powered by the Mujoco physics simulator - allowing for more complex experiments (such as varying the effects of gravity).
+This environment consists of a cart that can be moved linearly, with a pole attached to one end and having another end free.
+The cart can be pushed left or right, and the goal is to balance the pole on top of the cart by applying forces to the cart.</p>
 </section>
 <section id="action-space">
-<h2>Action Space<a class="headerlink" href="#action-space" title="Link to this heading">#</a></h2>
+<h2>Action Space<a class="headerlink" href="#action-space" title="Link to this heading">¶</a></h2>
 <p>The agent take a 1-element vector for actions.</p>
 <p>The action space is a continuous <code class="docutils literal notranslate"><span class="pre">(action)</span></code> in <code class="docutils literal notranslate"><span class="pre">[-3,</span> <span class="pre">3]</span></code>, where <code class="docutils literal notranslate"><span class="pre">action</span></code> represents
 the numerical force applied to the cart (with magnitude representing the amount of
@@ -561,11 +536,13 @@ force and sign representing the direction)</p>
 </div>
 </section>
 <section id="observation-space">
-<h2>Observation Space<a class="headerlink" href="#observation-space" title="Link to this heading">#</a></h2>
-<p>The state space consists of positional values of different body parts of
-the pendulum system, followed by the velocities of those individual parts (their derivatives)
-with all the positions ordered before all the velocities.</p>
-<p>The observation is a <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> with shape <code class="docutils literal notranslate"><span class="pre">(4,)</span></code> where the elements correspond to the following:</p>
+<h2>Observation Space<a class="headerlink" href="#observation-space" title="Link to this heading">¶</a></h2>
+<p>The observation space consists of the following parts (in order):</p>
+<ul class="simple">
+<li><p><em>qpos (2 element):</em> Position values of the robot’s cart and pole.</p></li>
+<li><p><em>qvel (2 elements):</em> The velocities of cart and pole (their derivatives).</p></li>
+</ul>
+<p>The observation space is a <code class="docutils literal notranslate"><span class="pre">Box(-Inf,</span> <span class="pre">Inf,</span> <span class="pre">(4,),</span> <span class="pre">float64)</span></code> where the elements are as follows:</p>
 <div class="table-wrapper colwidths-auto docutils container">
 <table class="docutils align-default">
 <thead>
@@ -616,41 +593,36 @@ with all the positions ordered before all the velocities.</p>
 </div>
 </section>
 <section id="rewards">
-<h2>Rewards<a class="headerlink" href="#rewards" title="Link to this heading">#</a></h2>
-<p>The goal is to keep the inverted pendulum stand upright (within a certain angle limit)
-for as long as possible - as such a reward of +1 is awarded for each timestep that
-the pole is upright.</p>
+<h2>Rewards<a class="headerlink" href="#rewards" title="Link to this heading">¶</a></h2>
+<p>The goal is to keep the inverted pendulum stand upright (within a certain angle limit) for as long as possible - as such, a reward of +1 is given for each timestep that the pole is upright.</p>
 <p>The pole is considered upright if:
-$|angle| &lt; 0.2$.</p>
+<span class="math notranslate nohighlight">\(|angle| &lt; 0.2\)</span>.</p>
 <p>and <code class="docutils literal notranslate"><span class="pre">info</span></code> also contains the reward.</p>
 </section>
 <section id="starting-state">
-<h2>Starting State<a class="headerlink" href="#starting-state" title="Link to this heading">#</a></h2>
-<p>The initial position state is $\mathcal{U}<em>{[-reset_noise_scale   imes 1</em>{2}, reset_noise_scale         imes 1_{2}]}$.
-The initial velocity state is $\mathcal{U}<em>{[-reset_noise_scale   imes 1</em>{2}, reset_noise_scale         imes 1_{2}]}$.</p>
-<p>where $\mathcal{U}$ is the multivariate uniform continuous distribution.</p>
-<p>All observations start in state
-(0.0, 0.0, 0.0, 0.0) with a uniform noise in the range
-of <code class="docutils literal notranslate"><span class="pre">[-reset_noise_scale,</span> <span class="pre">reset_noise_scale]</span></code> added to the values for stochasticity.</p>
+<h2>Starting State<a class="headerlink" href="#starting-state" title="Link to this heading">¶</a></h2>
+<p>The initial position state is <span class="math notranslate nohighlight">\(\mathcal{U}_{[-reset\_noise\_scale   imes I_{2}, reset\_noise\_scale         imes I_{2}]}\)</span>.
+The initial velocity state is <span class="math notranslate nohighlight">\(\mathcal{U}_{[-reset\_noise\_scale   imes I_{2}, reset\_noise\_scale         imes I_{2}]}\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> is the multivariate uniform continuous distribution.</p>
 </section>
 <section id="episode-end">
-<h2>Episode End<a class="headerlink" href="#episode-end" title="Link to this heading">#</a></h2>
+<h2>Episode End<a class="headerlink" href="#episode-end" title="Link to this heading">¶</a></h2>
 <section id="termination">
-<h3>Termination<a class="headerlink" href="#termination" title="Link to this heading">#</a></h3>
+<h3>Termination<a class="headerlink" href="#termination" title="Link to this heading">¶</a></h3>
 <p>The environment terminates when the Inverted Pendulum is unhealthy.
 The Inverted Pendulum is unhealthy if any of the following happens:</p>
 <ol class="arabic simple">
 <li><p>Any of the state space values is no longer finite.</p></li>
-<li><p>The absolute value of the vertical angle between the pole and the cart is greater than 0.2 radian.</p></li>
+<li><p>The absolute value of the vertical angle between the pole and the cart is greater than 0.2 radians.</p></li>
 </ol>
 </section>
 <section id="truncation">
-<h3>Truncation<a class="headerlink" href="#truncation" title="Link to this heading">#</a></h3>
-<p>The default duration of an episode is 1000 timesteps</p>
+<h3>Truncation<a class="headerlink" href="#truncation" title="Link to this heading">¶</a></h3>
+<p>The default duration of an episode is 1000 timesteps.</p>
 </section>
 </section>
 <section id="arguments">
-<h2>Arguments<a class="headerlink" href="#arguments" title="Link to this heading">#</a></h2>
+<h2>Arguments<a class="headerlink" href="#arguments" title="Link to this heading">¶</a></h2>
 <p>InvertedPendulum provides a range of parameters to modify the observation space, reward function, initial state, and termination condition.
 These parameters can be applied during <code class="docutils literal notranslate"><span class="pre">gymnasium.make</span></code> in the following way:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gymnasium</span> <span class="k">as</span> <span class="nn">gym</span>
@@ -669,38 +641,39 @@ These parameters can be applied during <code class="docutils literal notranslate
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">xml_file</span></code></p></td>
 <td><p><strong>str</strong></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">&quot;inverted_double_pendulum.xml&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;inverted_pendulum.xml&quot;</span></code></p></td>
 <td><p>Path to a MuJoCo model</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">reset_noise_scale</span></code></p></td>
 <td><p><strong>float</strong></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">0.01</span></code></p></td>
-<td><p>Scale of random perturbations of initial position and velocity (see section on Starting State)</p></td>
+<td><p>Scale of random perturbations of initial position and velocity (see <code class="docutils literal notranslate"><span class="pre">Starting</span> <span class="pre">State</span></code> section)</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </section>
 <section id="version-history">
-<h2>Version History<a class="headerlink" href="#version-history" title="Link to this heading">#</a></h2>
+<h2>Version History<a class="headerlink" href="#version-history" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>v5:</p>
 <ul>
 <li><p>Minimum <code class="docutils literal notranslate"><span class="pre">mujoco</span></code> version is now 2.3.3.</p></li>
 <li><p>Added support for fully custom/third party <code class="docutils literal notranslate"><span class="pre">mujoco</span></code> models using the <code class="docutils literal notranslate"><span class="pre">xml_file</span></code> argument (previously only a few changes could be made to the existing models).</p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">default_camera_config</span></code> argument, a dictionary for setting the <code class="docutils literal notranslate"><span class="pre">mj_camera</span></code> properties, mainly useful for custom environments.</p></li>
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">env.observation_structure</span></code>, a dictionary for specifying the observation space compose (e.g. <code class="docutils literal notranslate"><span class="pre">qpos</span></code>, <code class="docutils literal notranslate"><span class="pre">qvel</span></code>), useful for building tooling and wrappers for the MuJoCo environments.</p></li>
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">frame_skip</span></code> argument, used to configure the <code class="docutils literal notranslate"><span class="pre">dt</span></code> (duration of <code class="docutils literal notranslate"><span class="pre">step()</span></code>), default varies by environment check environment documentation pages.</p></li>
-<li><p>Fixed bug: <code class="docutils literal notranslate"><span class="pre">healthy_reward</span></code> was given on every step (even if the Pendulum is unhealthy), now it is only given if the Pendulum is healthy (not terminated) (related <a class="reference external" href="https://github.com/Farama-Foundation/Gymnasium/issues/500">Github issue</a>).</p></li>
+<li><p>Fixed bug: <code class="docutils literal notranslate"><span class="pre">healthy_reward</span></code> was given on every step (even if the Pendulum is unhealthy), now it is only given if the Pendulum is healthy (not terminated) (related <a class="reference external" href="https://github.com/Farama-Foundation/Gymnasium/issues/500">GitHub issue</a>).</p></li>
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">xml_file</span></code> argument.</p></li>
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">reset_noise_scale</span></code> argument to set the range of initial states.</p></li>
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">info[&quot;reward_survive&quot;]</span></code> which contains the reward.</p></li>
 </ul>
 </li>
-<li><p>v4: All MuJoCo environments now use the MuJoCo bindings in mujoco &gt;= 2.1..</p></li>
+<li><p>v4: All MuJoCo environments now use the MuJoCo bindings in mujoco &gt;= 2.1.3.</p></li>
 <li><p>v3: This environment does not have a v3 release.</p></li>
 <li><p>v2: All continuous control environments now use mujoco-py &gt;= 1.5.</p></li>
 <li><p>v1: max_time_steps raised to 1000 for robot based tasks (including inverted pendulum).</p></li>
-<li><p>v0: Initial versions release (1.0.0)</p></li>
+<li><p>v0: Initial versions release.</p></li>
 </ul>
 </section>
 </section>
@@ -873,10 +846,12 @@ These parameters can be applied during <code class="docutils literal notranslate
         })()
       </script>
 
-    <script src="../../../_static/documentation_options.js?v=a4d19d35"></script>
-    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/documentation_options.js?v=31d51385"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/furo.js?v=7660844c"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script>
 

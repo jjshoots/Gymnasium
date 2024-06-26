@@ -11,7 +11,7 @@
 <link rel="index" title="Index" href="../../../genindex/" /><link rel="search" title="Search" href="../../../search/" /><link rel="next" title="Misc Wrappers" href="../misc_wrappers/" /><link rel="prev" title="Wrappers" href="../" />
         <link rel="canonical" href="https://gymnasium.farama.org/api/wrappers/table.html" />
 
-    <link rel="shortcut icon" href="../../../_static/favicon.png"/><!-- Generated with Sphinx 7.2.6 and Furo 2023.08.19.dev1 -->
+    <link rel="shortcut icon" href="../../../_static/favicon.png"/><!-- Generated with Sphinx 7.3.7 and Furo 2023.08.19.dev1 -->
         <title>List of Wrappers - Gymnasium Documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=3e7f4c72" />
@@ -217,8 +217,12 @@
   <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/basic_usage/">Basic Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/train_agent/">Training an Agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/create_custom_env/">Create a Custom Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/record_agent/">Recording Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/speed_up_env/">Speeding Up Training</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction/gym_compatibility/">Compatibility with Gym</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../introduction/migration-guide/">v0.21 to v0.26 Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/migration_guide/">Migration Guide - v0.21 to v1.0.0</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul class="current">
@@ -228,7 +232,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../spaces/fundamental/">Fundamental Spaces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../spaces/composite/">Composite Spaces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../spaces/utils/">Spaces Utils</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../vector/utils/">Utility functions</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="../">Wrappers</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Wrappers</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
@@ -237,11 +240,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../action_wrappers/">Action Wrappers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../observation_wrappers/">Observation Wrappers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../reward_wrappers/">Reward Wrappers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../vector_wrappers/">Vector wrappers</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../vector/">Vector environments</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Vector environments</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../vector/wrappers/">Vector Wrappers</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../vector/">Vectorize</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Vectorize</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../vector/wrappers/">Wrappers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vector/async_vector_env/">AsyncVectorEnv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vector/sync_vector_env/">SyncVectorEnv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../vector/utils/">Utility functions</a></li>
@@ -394,11 +396,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../environments/atari/zaxxon/">Zaxxon</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../environments/third_party_environments/">Third-Party Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../environments/third_party_environments/">External Environments</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../tutorials/gymnasium_basics/">Gymnasium Basics</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Gymnasium Basics</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/gymnasium_basics/load_quadruped_model/">Load custom quadruped robot environments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/gymnasium_basics/handling_time_limits/">Handling Time Limits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/gymnasium_basics/implementing_custom_wrappers/">Implementing Custom Wrappers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/gymnasium_basics/environment_creation/">Make your own custom environment</a></li>
@@ -411,6 +414,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/training_agents/FrozenLake_tuto/">Frozenlake benchmark</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/third-party-tutorials/">Third-Party Tutorials</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.comet.com/docs/v2/integrations/ml-frameworks/gymnasium/?utm_source=gymnasium&amp;utm_medium=partner&amp;utm_campaign=partner_gymnasium_2023&amp;utm_content=docs_gymnasium">Comet Tutorial</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
@@ -475,8 +479,8 @@
           </div>
           <article role="main">
             
-            <section id="list-of-wrappers">
-<h1>List of Wrappers<a class="headerlink" href="#list-of-wrappers" title="Link to this heading">#</a></h1>
+            <section class="tex2jax_ignore mathjax_ignore" id="list-of-wrappers">
+<h1>List of Wrappers<a class="headerlink" href="#list-of-wrappers" title="Link to this heading">¶</a></h1>
 <p>Gymnasium provides a number of commonly used wrappers listed below. More information can be found on the particular
 wrapper in the page on the wrapper type</p>
 <div class="table-wrapper docutils container">
@@ -553,7 +557,7 @@ wrapper in the page on the wrapper type</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="../misc_wrappers/#gymnasium.wrappers.RenderCollection" title="gymnasium.wrappers.RenderCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">RenderCollection</span></code></a></p></td>
 <td><p>Collect rendered frames of an environment such <code class="docutils literal notranslate"><span class="pre">render</span></code> returns a <code class="docutils literal notranslate"><span class="pre">list[RenderedFrame]</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../observation_wrappers/#gymnasium.wrappers.RenderObservation" title="gymnasium.wrappers.RenderObservation"><code class="xref py py-class docutils literal notranslate"><span class="pre">RenderObservation</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../observation_wrappers/#gymnasium.wrappers.AddRenderObservation" title="gymnasium.wrappers.AddRenderObservation"><code class="xref py py-class docutils literal notranslate"><span class="pre">AddRenderObservation</span></code></a></p></td>
 <td><p>Includes the rendered observations in the environment’s observations.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../action_wrappers/#gymnasium.wrappers.RescaleAction" title="gymnasium.wrappers.RescaleAction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RescaleAction</span></code></a></p></td>
@@ -590,7 +594,7 @@ wrapper in the page on the wrapper type</p>
 </table>
 </div>
 <section id="vector-only-wrappers">
-<h2>Vector only Wrappers<a class="headerlink" href="#vector-only-wrappers" title="Link to this heading">#</a></h2>
+<h2>Vector only Wrappers<a class="headerlink" href="#vector-only-wrappers" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper docutils container">
 <table class="docutils align-default">
 <thead>
@@ -599,16 +603,16 @@ wrapper in the page on the wrapper type</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><a class="reference internal" href="../vector_wrappers/#gymnasium.wrappers.vector.DictInfoToList" title="gymnasium.wrappers.vector.DictInfoToList"><code class="xref py py-class docutils literal notranslate"><span class="pre">DictInfoToList</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../../vector/wrappers/#gymnasium.wrappers.vector.DictInfoToList" title="gymnasium.wrappers.vector.DictInfoToList"><code class="xref py py-class docutils literal notranslate"><span class="pre">DictInfoToList</span></code></a></p></td>
 <td><p>Converts infos of vectorized environments from <code class="docutils literal notranslate"><span class="pre">dict</span></code> to <code class="docutils literal notranslate"><span class="pre">List[dict]</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../vector_wrappers/#gymnasium.wrappers.vector.VectorizeTransformAction" title="gymnasium.wrappers.vector.VectorizeTransformAction"><code class="xref py py-class docutils literal notranslate"><span class="pre">VectorizeTransformAction</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../vector/wrappers/#gymnasium.wrappers.vector.VectorizeTransformAction" title="gymnasium.wrappers.vector.VectorizeTransformAction"><code class="xref py py-class docutils literal notranslate"><span class="pre">VectorizeTransformAction</span></code></a></p></td>
 <td><p>Vectorizes a single-agent transform action wrapper for vector environments.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../vector_wrappers/#gymnasium.wrappers.vector.VectorizeTransformObservation" title="gymnasium.wrappers.vector.VectorizeTransformObservation"><code class="xref py py-class docutils literal notranslate"><span class="pre">VectorizeTransformObservation</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../../vector/wrappers/#gymnasium.wrappers.vector.VectorizeTransformObservation" title="gymnasium.wrappers.vector.VectorizeTransformObservation"><code class="xref py py-class docutils literal notranslate"><span class="pre">VectorizeTransformObservation</span></code></a></p></td>
 <td><p>Vectorizes a single-agent transform observation wrapper for vector environments.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../vector_wrappers/#gymnasium.wrappers.vector.VectorizeTransformReward" title="gymnasium.wrappers.vector.VectorizeTransformReward"><code class="xref py py-class docutils literal notranslate"><span class="pre">VectorizeTransformReward</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../vector/wrappers/#gymnasium.wrappers.vector.VectorizeTransformReward" title="gymnasium.wrappers.vector.VectorizeTransformReward"><code class="xref py py-class docutils literal notranslate"><span class="pre">VectorizeTransformReward</span></code></a></p></td>
 <td><p>Vectorizes a single-agent transform reward wrapper for vector environments.</p></td>
 </tr>
 </tbody>
@@ -774,8 +778,8 @@ wrapper in the page on the wrapper type</p>
         })()
       </script>
 
-    <script src="../../../_static/documentation_options.js?v=a4d19d35"></script>
-    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/documentation_options.js?v=31d51385"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/furo.js?v=7660844c"></script>
     
